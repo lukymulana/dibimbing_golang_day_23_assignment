@@ -1,7 +1,7 @@
 package routes
 
 import (
-    "inventory-management/handlers"
+    "dibimbing_golang_day_23_assignment/handlers"
     "github.com/gin-gonic/gin"
 )
 

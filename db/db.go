@@ -1,7 +1,7 @@
 package db
 
 import (
-    "inventory-management/models"
+    "dibimbing_golang_day_23_assignment/models"
     "gorm.io/driver/mysql"
     "gorm.io/gorm"
     "log"
@@ -10,7 +10,7 @@ import (
 var DB *gorm.DB
 
 func InitDB() {
-    dsn := "user:password@tcp(127.0.0.1:3306)/inventory_management?charset=utf8mb4&parseTime=True&loc=Local"
+    dsn := "root:@tcp(localhost:3306)/golang_inventory_management?charset=utf8mb4&parseTime=True&loc=Local"
     var err error
     DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
     if err != nil {

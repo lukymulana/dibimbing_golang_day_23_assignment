@@ -1,8 +1,8 @@
 package main
 
 import (
-    "inventory-management/db"
-    "inventory-management/routes"
+    "dibimbing_golang_day_23_assignment/db"
+    "dibimbing_golang_day_23_assignment/routes"
     "github.com/gin-gonic/gin"
 )
 

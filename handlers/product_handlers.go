@@ -1,8 +1,8 @@
 package handlers
 
 import (
-    "inventory-management/db"
-    "inventory-management/models"
+    "dibimbing_golang_day_23_assignment/db"
+    "dibimbing_golang_day_23_assignment/models"
     "github.com/gin-gonic/gin"
     "net/http"
 )
