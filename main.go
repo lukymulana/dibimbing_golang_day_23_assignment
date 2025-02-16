@@ -17,5 +17,5 @@ func main() {
     routes.SetupRoutes(r)
 
     // Start the server
-    r.Run() // listen and serve on 0.0.0.0:8080
+    r.Run(":8081") // listen and serve on 0.0.0.0:8081
 }
