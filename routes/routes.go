@@ -13,6 +13,7 @@ func SetupRoutes(r *gin.Engine) {
     r.GET("/products/category/:category", handlers.GetProductsByCategory)
     r.PUT("/products/:id", handlers.UpdateProduct)
     r.DELETE("/products/:id", handlers.DeleteProduct)
+    r.GET("/products/:id/image", handlers.DownloadImage)
 
     // Inventory routes
     r.GET("/inventory/:productID", handlers.GetInventoryByProductID)

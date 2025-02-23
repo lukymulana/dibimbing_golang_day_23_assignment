@@ -3,16 +3,31 @@ package handlers
 import (
     "dibimbing_golang_day_23_assignment/db"
     "dibimbing_golang_day_23_assignment/models"
+    "dibimbing_golang_day_23_assignment/utils"
     "github.com/gin-gonic/gin"
     "net/http"
 )
 
 func CreateProduct(c *gin.Context) {
     var product models.Product
-    if err := c.ShouldBindJSON(&product); err != nil {
+    // Parse the form data
+    if err := c.ShouldBind(&product); err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
         return
     }
+
+    // Handle file upload
+    file, err := c.FormFile("image")
+    if err == nil {
+        // Upload the file using the utility function
+        err := utils.UploadFile(file, "./uploads") // Specify your upload directory
+        if err != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to upload image"})
+            return
+        }
+        product.ImagePath = "./uploads/" + file.Filename // Save the image path in the product
+    }
+
     db.DB.Create(&product)
     c.JSON(http.StatusCreated, product)
 }
@@ -64,4 +79,15 @@ func DeleteProduct(c *gin.Context) {
     }
     db.DB.Delete(&product)
     c.JSON(http.StatusOK, gin.H{"message": "Product deleted"})
+}
+
+func DownloadImage(c *gin.Context) {
+    id := c.Param("id")
+    var product models.Product
+    if err := db.DB.First(&product, id).Error; err != nil {
+        c.JSON(http.StatusNotFound, gin.H{"error": "Product not found"})
+        return
+    }
+
+    c.File(product.ImagePath)
 }
