@@ -1,4 +1,4 @@
-# dibimbing_golang_day_23_assignment
+# dibimbing_golang_day_23_assignment (Golang Simple API Inventory Management)
 
 ## Project setup
 
